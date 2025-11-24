@@ -10,11 +10,16 @@
 <body>
   <wc-navbar></wc-navbar>
   <main class="container">
-    key1のvalueは、<span id="printValue"></span>です。
-    <input type="text" id="inputValue" />
-    <button onclick="save();">セーブ</button>
-    <button onclick="load();">ロード</button>
-    <button onclick="reset();">リセット</button>
+    key1のvalueは以下の通りです。（すでにローカルストレージに値が存在する場合は初期表示されます。）<br />
+    <span id="printValue"></span>
+    <hr />
+    <div class="mb-3">
+      <label for="inputValue" class="form-label">ローカルストレージに保存したい値</label>
+      <input type="text" class="form-control" id="inputValue">
+    </div>
+    <button type="button" class="btn btn-dark" onclick="save();">セーブ</button>
+    <button type="button" class="btn btn-dark" onclick="load();">ロード</button>
+    <button type="button" class="btn btn-dark" onclick="reset();">リセット</button>
   </main>
   <script src="../web-components/navbar.js"></script>
   <script>
