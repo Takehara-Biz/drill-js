@@ -16,15 +16,24 @@
 <body>
   <wc-navbar></wc-navbar>
   <main class="container">
-    <h1>問題：</h1>
+    <h1>問題：ビルトインオブジェクトの上書き</h1>
     <p></p>
     <pre class="prettyprint linenums">
+      Math.PI;
       // [①]
+      Math = 100;
+      Math.PI;
+      // [②]
     </pre>
     <button type="button" class="btn btn-primary" onclick="showAnswer();">解答</button>
     <div id="answer" style="display: none;">
       <pre>
-        ①
+        ① 3.141592653589793
+        ② undefined
+
+        解説
+        ①は細かい小数点まで覚えなくて良い。
+        間違えてビルトインオブジェクトを上書きしないように気をつけること。
       </pre>
     </div>
   </main>

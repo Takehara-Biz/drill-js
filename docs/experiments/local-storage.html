@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  key1のvalueは、<span id="printValue"></span>です。
+  <input type="text" id="inputValue" />
+  <button onclick="save();">セーブ</button>
+  <button onclick="load();">ロード</button>
+  <button onclick="reset();">リセット</button>
+  <script>
+    const key = "key1";
+    function save(){
+      const value = document.getElementById("inputValue").value;
+      localStorage.setItem(key, value);
+    }
+    function load(){
+      const value = localStorage.getItem(key);
+      document.getElementById("printValue").innerText = value;
+    }
+    function reset(){
+      localStorage.removeItem(key);
+    }
+  </script>
+</body>
+</html>
