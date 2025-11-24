@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <title>Document</title>
+  <style>
+    .prettyprint ol.linenums > li {
+	    list-style-type: decimal; 
+    }
+  </style>
+</head>
+<body>
+  <h1>問題：letとvarの重複定義</h1>
+  <p>それぞれの即時関数の中で、同じ名前の変数を、letとvarで2回ずつ定義している。実行結果の空欄を埋めよ。</p>
+  <pre class="prettyprint linenums">
+    (function (){
+      let a = 1;
+      let a = 2;
+      console.log(a);
+    }());
+    // > [①]
+
+    (function (){
+      var b = 1;
+      var b = 2;
+      console.log(b);
+    }());
+    // > [②]
+  </pre>
+  <button onclick="showAnswer();">解答</button>
+  <div id="answer" style="display: none;">
+    <pre>
+      ① Uncaught SyntaxError: Identifier 'a' has already been declared
+      ② 2
+    </pre>
+  </div>
+  <script>
+    function showAnswer(){
+      document.getElementById("answer").style.display = "block";
+    }
+  </script>
+</body>
+</html>
