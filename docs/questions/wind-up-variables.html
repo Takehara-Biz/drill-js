@@ -15,35 +15,37 @@
 </head>
 <body>
   <wc-navbar></wc-navbar>
-  <h1>問題：変数の巻き上げ定義</h1>
-  <p>それぞれの即時関数の中で、同じ名前の変数を、letとvarで2回ずつ定義している。実行結果の空欄を埋めよ。</p>
-  <pre class="prettyprint linenums">
-    (function (){
-      console.log(v);
-      // > [①]
-      var v = 1;
-      console.log(v);
-      // > [②]
+  <main class="container">
+    <h1>問題：変数の巻き上げ定義</h1>
+    <p>それぞれの即時関数の中で、同じ名前の変数を、letとvarで2回ずつ定義している。実行結果の空欄を埋めよ。</p>
+    <pre class="prettyprint linenums">
+      (function (){
+        console.log(v);
+        // > [①]
+        var v = 1;
+        console.log(v);
+        // > [②]
 
-      console.log(l);
-      // > [③]
-      let l = 2;
-      console.log(l);
-      // > [④]
-    }());
-  </pre>
-  <button type="button" class="btn btn-primary" onclick="showAnswer();">解答</button>
-  <div id="answer" style="display: none;">
-    <pre>
-      ① undefined
-      ② 1
-      ③ Uncaught ReferenceError: Cannot access 'l' before initialization
-      ④ （③でプログラムが止まるので、実行されない。）
-
-      解説
-      関数内のvarは、関数の一番上で、var v;として定義されてスタートする。
+        console.log(l);
+        // > [③]
+        let l = 2;
+        console.log(l);
+        // > [④]
+      }());
     </pre>
-  </div>
+    <button type="button" class="btn btn-primary" onclick="showAnswer();">解答</button>
+    <div id="answer" style="display: none;">
+      <pre>
+        ① undefined
+        ② 1
+        ③ Uncaught ReferenceError: Cannot access 'l' before initialization
+        ④ （③でプログラムが止まるので、実行されない。）
+
+        解説
+        関数内のvarは、関数の一番上で、var v;として定義されてスタートする。
+      </pre>
+    </div>
+  </main>
   <script>
     function showAnswer(){
       document.getElementById("answer").style.display = "block";
