@@ -8,7 +8,7 @@ class WCNavBar extends HTMLElement {
     <base href="https://takehara-biz.github.io/drill-js/" />
     <nav class="navbar navbar-expand-lg bg-body-secondary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">JavaScriptドリルb</a>
+        <a class="navbar-brand" href="#">JavaScriptドリル</a>
         <div class="" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
