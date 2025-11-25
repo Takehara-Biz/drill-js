@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>開発者ツールのコンソールを開いてから、ボタンを押すこと。</p>
+  <button onclick="debug();">デバッグ</button>
+  
+  <script>
+    "use strict";
+    function debug(){
+      console.log("console.log");
+      console.debug("console.debug");
+      console.warn("console.warn");
+      console.error("console.error");
+
+      console.assert(1 === 1, "as1");
+      console.assert(1 === 2, "as2");
+      console.count("aaa");
+      console.count("aaa");
+      console.count();
+      
+      console.group();
+      console.log("bbb");
+      console.log("bbb");
+      console.groupEnd();
+
+      console.groupCollapsed();
+      console.log("ccc");
+      console.log("ccc");
+      console.groupEnd();
+
+      let obj = {"a": 1, "b": "bb", "c": {"c1": "c2"}};
+      console.log(obj);
+      console.dir(obj);
+
+      const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+      (async () => {
+        console.time();
+        await sleep(1000);
+        console.timeEnd();
+      })();
+    }
+  </script>
+</body>
+</html>
