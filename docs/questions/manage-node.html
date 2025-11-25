@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <style>
+    .prettyprint ol.linenums > li {
+	    list-style-type: decimal; 
+    }
+  </style>
+</head>
+<body>
+  <wc-navbar></wc-navbar>
+  <main class="container">
+    <h1>問題：ノードの管理</h1>
+    <p>js実行後の、ulタグの中身がどうなっているか回答せよ。</p>
+    html
+    <pre class="prettyprint linenums">
+      <ul id="target">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </pre>
+    js
+    <pre class="prettyprint linenums">
+      "use strict";
+      const target = document.getElementById("target");
+      const newLi4 = document.createElement('li');
+      newLi4.innerText = "4";
+      const newLi5 = document.createElement('li');
+      newLi5.innerText = "5";
+
+      target.appendChild(newLi4);
+      target.removeChild(target.firstElementChild);
+      target.insertBefore(newLi5, target.firstElementChild.nextSibling);
+    </pre>
+    <button type="button" class="btn btn-primary" onclick="showAnswer();">解答</button>
+    <div id="answer" style="display: none;">
+      <pre>
+        2, 5, 3, 4の順に並ぶ。
+
+        解説
+        末尾に4を追加し、先頭の1を削除し、3の直前に5を挿入します。
+      </pre>
+    </div>
+  </main>
+  <script>
+    function showAnswer(){
+      document.getElementById("answer").style.display = "block";
+    }
+  </script>
+  <script src="../web-components/navbar.js"></script>
+</body>
+</html>

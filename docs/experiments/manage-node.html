@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="target">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <script>
+    "use strict";
+    window.onload = () => {
+      const target = document.getElementById("target");
+      const newLi4 = document.createElement('li');
+      newLi4.innerText = "4";
+      const newLi5 = document.createElement('li');
+      newLi5.innerText = "5";
+      target.appendChild(newLi4);
+      target.removeChild(target.firstElementChild);
+      target.insertBefore(newLi5, target.firstElementChild.nextSibling);
+    }
+  </script>
+</body>
+</html>

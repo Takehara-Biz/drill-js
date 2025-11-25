@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <style>
+    .prettyprint ol.linenums > li {
+	    list-style-type: decimal; 
+    }
+  </style>
+</head>
+<body>
+  <wc-navbar></wc-navbar>
+  <main class="container">
+    <h1>問題：use strict</h1>
+    <p>次のプログラムの各行でエラーが発生するかしないか、する場合はどのようなエラーが発生するか回答せよ。</p>
+    <pre class="prettyprint linenums">
+      (function () {
+        hoge1 = 1; // > [①]
+      }());
+      (function () {
+        let num = 010; // > [②]
+      }());
+      (function () {
+        "use strict"
+        hoge2 = 1; // > [③]
+      }());
+      (function () {
+        "use strict"
+        let num = 010; // > [④]
+      }());
+    </pre>
+    <button type="button" class="btn btn-primary" onclick="showAnswer();">解答</button>
+    <div id="answer" style="display: none;">
+      <pre>
+        ① エラーは発生しない。
+        ② エラーは発生しない。
+        ③ Uncaught ReferenceError: hoge2 is not defined
+        ④ Uncaught SyntaxError: Octal literals are not allowed in strict mode.
+
+        解説
+        use strict;を使うことで、曖昧な書き方を禁止したり、処理が高速化されることがあります。
+      </pre>
+    </div>
+  </main>
+  <script>
+    function showAnswer(){
+      document.getElementById("answer").style.display = "block";
+    }
+  </script>
+  <script src="../web-components/navbar.js"></script>
+</body>
+</html>

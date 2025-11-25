@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="back();">戻る</button>
+  <button onclick="forward();">進む</button>
+  <button onclick="pushState();">履歴の末尾に新しいページ情報を追加する</button>
+  <br />
+  history:length <span id="historyLength"></span>
+  <script>
+    "use strict";
+    let count = 0;
+    function back(){
+      history.back();
+      updateInfo();
+    }
+    function forward(){
+      history.forward();
+      updateInfo();
+    }
+    function pushState(){
+      const fullUrl = location.href;
+      let index = fullUrl.indexOf("?");
+      if (index === -1) {
+        index = location.href.length;
+      }
+      let newUrl = fullUrl.substring(0, index) + "?param=" + count + "#" + count;
+      history.pushState(history.length, newUrl);
+      
+      //これを呼ばないと、アドレスバーの表示が変わらない。
+      history.replaceState(null, "", newUrl);
+      count++;
+      updateInfo();
+    }
+    function updateInfo(){
+      document.getElementById("historyLength").innerText = history.length;
+    }
+    window.onload = updateInfo();
+  </script>
+</body>
+</html>
