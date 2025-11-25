@@ -6,40 +6,65 @@
   <title>Document</title>
 </head>
 <body>
-  <button onclick="back();">戻る</button>
-  <button onclick="forward();">進む</button>
-  <button onclick="pushState();">履歴の末尾に新しいページ情報を追加する</button>
-  <br />
-  history:length <span id="historyLength"></span>
+  <dl>
+    <dt>href</dt>
+    <dd id="href"></dd>
+  </dl>
+  <dl>
+    <dt>protocol</dt>
+    <dd id="protocol"></dd>
+  </dl>
+  <dl>
+    <dt>host</dt>
+    <dd id="host"></dd>
+  </dl>
+  <dl>
+    <dt>hostname</dt>
+    <dd id="hostname"></dd>
+  </dl>
+  <dl>
+    <dt>port</dt>
+    <dd id="port"></dd>
+  </dl>
+  <dl>
+    <dt>pathname</dt>
+    <dd id="pathname"></dd>
+  </dl>
+  <dl>
+    <dt>search</dt>
+    <dd id="search"></dd>
+  </dl>
+  <dl>
+    <dt>hash</dt>
+    <dd id="hash"></dd>
+  </dl>
+  <dl>
+    <dt>username</dt>
+    <dd id="username"></dd>
+  </dl>
+  <dl>
+    <dt>password</dt>
+    <dd id="password"></dd>
+  </dl>
+  <dl>
+    <dt>origin</dt>
+    <dd id="origin"></dd>
+  </dl>
   <script>
     "use strict";
-    let count = 0;
-    function back(){
-      history.back();
-      updateInfo();
+    window.onload = function (){
+      document.getElementById("href").innerText = location.href;
+      document.getElementById("protocol").innerText = location.protocol;
+      document.getElementById("host").innerText = location.host;
+      document.getElementById("hostname").innerText = location.hostname;
+      document.getElementById("port").innerText = location.port;
+      document.getElementById("pathname").innerText = location.pathname;
+      document.getElementById("search").innerText = location.search;
+      document.getElementById("hash").innerText = location.hash;
+      document.getElementById("username").innerText = location.username;
+      document.getElementById("password").innerText = location.password;
+      document.getElementById("origin").innerText = location.origin;
     }
-    function forward(){
-      history.forward();
-      updateInfo();
-    }
-    function pushState(){
-      const fullUrl = location.href;
-      let index = fullUrl.indexOf("?");
-      if (index === -1) {
-        index = location.href.length;
-      }
-      let newUrl = fullUrl.substring(0, index) + "?param=" + count + "#" + count;
-      history.pushState(history.length, newUrl);
-      
-      //これを呼ばないと、アドレスバーの表示が変わらない。
-      history.replaceState(null, "", newUrl);
-      count++;
-      updateInfo();
-    }
-    function updateInfo(){
-      document.getElementById("historyLength").innerText = history.length;
-    }
-    window.onload = updateInfo();
   </script>
 </body>
 </html>
