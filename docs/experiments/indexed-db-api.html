@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <wc-navbar></wc-navbar>
+  <main class="container">
+    今のデータを閲覧するときは開発者ツールから。
+    <hr />
+    オブジェクト（レコード）作成<br />
+    keyPathの値:<input type="text" id="keyPathValue" value="value1"/><br />
+    JSONデータ<input type="text" id="objJSONData" value='{"a":1}'/><br />
+    <button onclick="putObject();">オブジェクト作成</button>
+  </main>
+  <script>
+    const OBJECT_STORE_NAME = "objectStore1";
+    const KEY_PATH_NAME = "keyPath1";
+    let dbDataBase;
+    function openDB(){
+      const dbOpenDBRequest = indexedDB.open("database1");
+      
+      dbOpenDBRequest.onupgradeneeded = () => {
+        console.log("onupgradeneeded");
+        dbDataBase = dbOpenDBRequest.result;
+        const objectStore = dbDataBase.createObjectStore(OBJECT_STORE_NAME, {keyPath: KEY_PATH_NAME});
+        console.dir(objectStore);
+      }
+      dbOpenDBRequest.onsuccess = () => {
+        console.log("onsuccess");
+        dbDataBase = dbOpenDBRequest.result;
+      }
+      dbOpenDBRequest.onerror = () => console.error("onerror");
+    }
+    function putObject(){
+      const tx = dbDataBase.transaction(OBJECT_STORE_NAME, "readwrite");
+      const objectStore = tx.objectStore(OBJECT_STORE_NAME)
+      const keyPathValue = document.getElementById("keyPathValue").value;
+      const objectJSONDataStr = document.getElementById("objJSONData").value;
+      let objJSONData = JSON.parse(objectJSONDataStr);
+      objJSONData[KEY_PATH_NAME] = keyPathValue;
+      const dbRequest = objectStore.put(objJSONData);
+      dbRequest.onsuccess = () => console.log("onsuccess");
+      dbRequest.onerror = () => console.error("onerror");
+    }
+    window.onload = () => {
+      console.log("onload");
+      if(!window.indexedDB){
+        alert("このブラウザではindexedDBを使えません。");
+        return;
+      }
+      openDB();
+    }
+  </script>
+</body>
+</html>
