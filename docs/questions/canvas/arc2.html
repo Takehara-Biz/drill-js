@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <style>
+    .prettyprint ol.linenums > li {
+	    list-style-type: decimal; 
+    }
+  </style>
+</head>
+<body>
+  <wc-navbar></wc-navbar>
+  <main class="container">
+    <h1>問題：arc関数の使い方</h1>
+    <p>
+      canvas.getContext("2d")の戻り値を変数ctxに格納する。
+      次に、「ctx.arc(10, 20, 3, 0, x, y);」の関数を実行する。
+      変数x, yが以下の時に、ctx.stroke()を呼び出すとどのような図形が描かれるか？</p>
+    <ul>
+      <li>①xが0, yがtrue</li>
+      <li>②xがMath.PI * 0.5, yがfalse</li>
+      <li>③xがMath.PI * 1, yがfalse</li>
+      <li>④xがMath.PI * 1.5, yがfalse</li>
+      <li>⑤xがMath.PI * 2, yがfalse</li>
+      <li>⑥xがMath.PI * 2, yがtrue</li>
+      <li>⑦xがMath.PI * 1, yがtrue</li>
+    </ul>
+      
+    <button type="button" class="btn btn-primary" onclick="showAnswer();">解答</button>
+    <div id="answer" style="display: none;">
+      <pre>
+        ① 時計の3〜6時の位置に弧が描かれる。カタカナの「ノ」に近い。
+        ② 時計の3〜9時の位置に弧が描かれる。円の下半分。
+        ③ 時計の3〜0時の位置に弧が描かれる。円の下半分と左上。
+        ④ 真円が描かれる。時計の3〜3時の位置に弧が描かれる。時計回り。
+        ⑤ 真円が描かれる。時計の3〜3時の位置に弧が描かれる。反時計回り。
+        ⑥ 時計の3から逆回りで9時の位置まで弧が描かれる。円の上半分。
+
+        解説
+        第4引数「0」は円弧の描画開始位置。時計の3時の位置。
+        第6引数の真偽値は、描画方向。trueなら反時計回り。falseなら時計回りで描画。
+      </pre>
+    </div>
+  </main>
+  <script>
+    function showAnswer(){
+      document.getElementById("answer").style.display = "block";
+    }
+  </script>
+  <script src="../../web-components/navbar.js"></script>
+</body>
+</html>
