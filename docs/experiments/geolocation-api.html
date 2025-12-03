@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <dl>
+    <dt>coords.latitude</dt>
+    <dd id="latitude"></dd>
+  </dl>
+  <dl>
+    <dt>coords.longitude</dt>
+    <dd id="longitude"></dd>
+  </dl>
+  <dl>
+    <dt>coords.altitude</dt>
+    <dd id="altitude"></dd>
+  </dl>
+  <dl>
+    <dt>coords.accuracy</dt>
+    <dd id="accuracy"></dd>
+  </dl>
+  <dl>
+    <dt>coords.altitudeAccuracy</dt>
+    <dd id="altitudeAccuracy"></dd>
+  </dl>
+  <dl>
+    <dt>coords.heading</dt>
+    <dd id="heading"></dd>
+  </dl>
+  <dl>
+    <dt>coords.speed</dt>
+    <dd id="speed"></dd>
+  </dl>
+  <dl>
+    <dt>timestamp</dt>
+    <dd id="timestamp"></dd>
+  </dl>
+  <script>
+    "use strict";
+    function okCallback(pos){
+      console.log(pos);
+      document.getElementById("latitude").innerText = pos.coords.latitude;
+      document.getElementById("longitude").innerText = pos.coords.longitude;
+      document.getElementById("altitude").innerText = pos.coords.altitude;
+      document.getElementById("accuracy").innerText = pos.coords.accuracy;
+      document.getElementById("altitudeAccuracy").innerText = pos.coords.altitudeAccuracy;
+      document.getElementById("heading").innerText = pos.coords.heading;
+      document.getElementById("speed").innerText = pos.coords.speed;
+      document.getElementById("timestamp").innerText = pos.timestamp;
+
+    }
+    function ngCallback(pos){
+      console.error(pos);
+    }
+    window.onload = function (){
+      navigator.geolocation.getCurrentPosition(
+        okCallback, ngCallback
+      );
+      
+    }
+  </script>
+</body>
+</html>

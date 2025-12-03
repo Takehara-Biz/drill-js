@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>videoタグ</p>
+  <video controls id="videoId" src="./mov_hts-samp007.mp4" width="400px" height="300px"></video>
+  <br />
+  <button onclick="load();">load</button>
+  <button onclick="play();">play</button>
+  <button onclick="pause();">pause</button>
+  <button onclick="diagnose();">オブジェクトの状態をコンソールに出力する</button>
+  <script>
+    const video = document.getElementById("videoId");
+    
+    window.onload = () => {
+      diagnose();
+
+      video.addEventListener("play", () => console.log("play"));
+      video.addEventListener("playing", () => console.log("playing"));
+      video.addEventListener("timeupdate", () => console.log("timeupdate"));
+      video.addEventListener("pause", () => console.log("pause"));
+      video.addEventListener("waiting", () => console.log("waiting"));
+      video.addEventListener("ended", () => console.log("ended"));
+      video.addEventListener("error", () => console.log("error"));
+      video.addEventListener("abort", () => console.log("abort"));
+    }
+
+    function diagnose(){
+      console.dir(video);
+      console.log(`readyState: ${video.readyState}`);
+      console.log(`networkState: ${video.networkState}`);
+      console.log(`error: ${video.error}`);
+      console.log(`paused: ${video.paused}`);
+      console.log(`ended: ${video.ended}`);
+      console.log(`duration: ${video.duration}`);
+      console.log(`currentTime: ${video.currentTime}`);
+    }
+    const load = () => video.load();
+    const play = () => video.play();
+    const pause = () => video.pause();
+  </script>
+</body>
+</html>
