@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>audioタグ</p>
+  <audio controls id="audioId" src="./Morning_2.mp3"></audio>
+  <br />
+  <button onclick="load();">load</button>
+  <button onclick="play();">play</button>
+  <button onclick="pause();">pause</button>
+  <button onclick="diagnose();">オブジェクトの状態をコンソールに出力する</button>
+  <script>
+    const audio = document.getElementById("audioId");
+    
+    window.onload = () => {
+      diagnose();
+
+      audio.addEventListener("play", () => console.log("play"));
+      audio.addEventListener("playing", () => console.log("playing"));
+      audio.addEventListener("timeupdate", () => console.log("timeupdate"));
+      audio.addEventListener("pause", () => console.log("pause"));
+      audio.addEventListener("waiting", () => console.log("waiting"));
+      audio.addEventListener("ended", () => console.log("ended"));
+      audio.addEventListener("error", () => console.log("error"));
+      audio.addEventListener("abort", () => console.log("abort"));
+    }
+
+    function diagnose(){
+      console.dir(audio);
+      console.log(`readyState: ${audio.readyState}`);
+      console.log(`networkState: ${audio.networkState}`);
+      console.log(`error: ${audio.error}`);
+      console.log(`paused: ${audio.paused}`);
+      console.log(`ended: ${audio.ended}`);
+      console.log(`duration: ${audio.duration}`);
+      console.log(`currentTime: ${audio.currentTime}`);
+    }
+    const load = () => audio.load();
+    const play = () => audio.play();
+    const pause = () => audio.pause();
+  </script>
+</body>
+</html>
