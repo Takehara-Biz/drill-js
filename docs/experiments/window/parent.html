@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="window.alert('alert');">window.alert();</button>
+  <button onclick="window.confirm('confirm');">window.confirm();</button>
+  <button onclick="window.prompt('prompt');">window.prompt();</button>
+  <button onclick="open();">window.open();</button>
+  <button onclick="createPopup();">window.createPopup();</button>
+  <button onclick="childWindow.postMessage('postMessage');">postMessage();</button>
+  <script>
+    let childWindow;
+    function open(){
+      childWindow = window.open("./child.html", "child");
+    }
+    function createPopup(){
+      childWindow = window.createPopup("./child.html");
+    }
+  </script>
+</body>
+</html>
